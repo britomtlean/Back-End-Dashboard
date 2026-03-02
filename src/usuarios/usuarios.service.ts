@@ -12,7 +12,7 @@ async listarUsers(){
         id: true,
         nome: true,
         cpf: true,
-        email: true,
+        email: false,
         senha: false,
       },
     });

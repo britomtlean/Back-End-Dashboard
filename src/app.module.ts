@@ -8,9 +8,10 @@ import { PrismaModule } from './prisma/prisma.module';
 import { TarefasService } from './tarefas/tarefas.service';
 import { TarefasController } from './tarefas/tarefas.controller';
 import { TarefasModule } from './tarefas/tarefas.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [UsuariosModule, PrismaModule, TarefasModule],
+  imports: [UsuariosModule, PrismaModule, TarefasModule, AuthModule],
   controllers: [AppController, TarefasController],
   providers: [AppService, PrismaService, UsuariosService, TarefasService],
 })

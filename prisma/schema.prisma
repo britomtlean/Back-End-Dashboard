@@ -12,7 +12,7 @@ model Usuario {
   nome    String   @db.VarChar(50)
   cpf     String   @unique @db.VarChar(50)
   email   String   @db.VarChar(50)
-  senha   String   @db.VarChar(50)
+  senha   String   @db.VarChar(100)
   tarefas Tarefa[]
 
   @@map("usuarios")
