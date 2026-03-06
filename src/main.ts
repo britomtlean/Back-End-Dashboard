@@ -7,7 +7,11 @@ async function bootstrap() {
 
   //CORS
   app.enableCors({
-    origin: ['http://localhost:5173', 'https://dashboard-ts.netlify.app'],
+    origin: [
+      'http://localhost:5173',
+      'https://dashboard-ts.netlify.app',
+      'https://dashboard-vite-react-ts-production.up.railway.app',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
