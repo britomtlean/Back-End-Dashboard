@@ -22,8 +22,10 @@ model Tarefa {
   id        Int     @id @default(autoincrement())
   desc      String  @db.VarChar(255)
   usuarioId Int
+  status    Boolean @default(false)
   usuario   Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
 
   @@index([usuarioId], map: "tarefas_usuarioId_fkey")
+  @@unique([id, usuarioId])
   @@map("tarefas")
 }

@@ -31,8 +31,7 @@ export class AuthService {
   // Declaração da blacklist
   private tokenBlacklist: Set<string> = new Set();
 
-  /**************************************************************CADASTRO**********************************************************/
-
+  /********************************************** CADASTRO *******************************************/
   async cadastrar(user: Casdastro) {
     //desfragmentação
     const { nome, cpf, email, senha } = user;
@@ -75,8 +74,9 @@ export class AuthService {
     const { senha: _, ...usuarioSemSenha } = usuario;
     return usuarioSemSenha;
   }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  /*************************************************** AUTENTICAÇÃO E GERAÇÃO DE TOKEN **********************************************************/
+  /*********************************************** AUTENTICAÇÃO ***************************************************/
   async login(user: Login) {
     console.log('Usuario recebido:', user);
 
@@ -103,7 +103,7 @@ export class AuthService {
     }
     /************************************************************ */
 
-    /**************Se a autenticação for valida ************************ */
+    /************** Se a autenticação for valida ************************ */
 
     const payload: JwtPayload = {
       sub: usuarioDB.id,
@@ -112,9 +112,10 @@ export class AuthService {
 
     const token = this.jwtService.sign(payload);
 
-    console.log('Usuario logado:', payload, new Date())
+    console.log('Usuario conectado:', payload, new Date())
     return token;
   }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   ////////////////////////////// LOGOUT //////////////////////////////////
   invalidateToken(req: Request) {
