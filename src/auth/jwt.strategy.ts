@@ -23,7 +23,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-
+  
   //VALIDA O TOKEN E EXTRAI O PAYLOAD
   constructor(private readonly prisma: PrismaService) {
     super({
@@ -44,17 +44,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         id: true,
         nome: true,
         cpf: true,
-        email: true
+        email: true,
       },
     });
 
-
     if (!usuario) {
-      console.log('Usuário não encontrado')
-      throw new UnauthorizedException("Erro de Login");
+      console.log('Usuário não encontrado');
+      throw new UnauthorizedException('Erro de Login');
     }
 
-    console.log('Usuario enviado:', usuario)
+    console.log('Usuario enviado:', usuario);
     return usuario;
   }
 }

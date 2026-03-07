@@ -11,6 +11,7 @@ async function bootstrap() {
       'http://localhost:5173',
       'https://dashboard-ts.netlify.app',
       'https://dashboard-vite-react-ts-production.up.railway.app',
+      'http://192.168.100.178:5173',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
