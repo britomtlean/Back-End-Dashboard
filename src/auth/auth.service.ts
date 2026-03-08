@@ -113,7 +113,9 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
 
     console.log('Usuario conectado:', payload, new Date())
-    return token;
+    return {
+      token: token,
+    };
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

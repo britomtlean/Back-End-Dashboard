@@ -26,6 +26,11 @@ export class AuthController {
     @Body() user: Login,
     @Res({ passthrough: true }) response: Response,
   ) {
+
+      return await this.service.login(user)
+
+
+    /*TOKEN VIA COOKIE
     const token = await this.service.login(user);
 
     //COOKIE ENVIADO
@@ -37,6 +42,7 @@ export class AuthController {
     });
 
     return { message: 'Usuário Autenticado' };
+    */
   }
   ///////////////////////////////////////////////////////////////
 

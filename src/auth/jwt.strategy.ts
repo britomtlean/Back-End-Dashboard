@@ -23,16 +23,20 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  
+
   //VALIDA O TOKEN E EXTRAI O PAYLOAD
   constructor(private readonly prisma: PrismaService) {
     super({
+      /*
+      //EXTRAI TOKEN VIA COOKIE
       jwtFromRequest: ExtractJwt.fromExtractors([
-        //EXTRAI TOKEN VIA COOKIE
         (request: Request) => {
           return request?.cookies?.token;
         },
       ]),
+      */
+      //EXTRAI TOKEN VIA HEADER
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_SECRET as string, //RECEBE A CHAVE JWT PARA VALIDAÇÃO
     });
   }
