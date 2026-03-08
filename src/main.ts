@@ -9,7 +9,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:5173',
-      'https://dashboard-ts.netlify.app',
+      'https://dashboard-react-dot-ts.netlify.app/login',
       'https://dashboard-vite-react-ts-production.up.railway.app',
       'http://192.168.100.178:5173',
     ],
