@@ -54,8 +54,9 @@ export class TreinoService {
   /**************************************** ENVIAR TREINO DO DIA********************************** */
 
   async sendTrainingDay(user: UsuarioLogado) {
-    const data = new Date();
-    const today = data.getDay();
+    const today = new Date(
+      new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }),
+    ).getDay();
 
     const trainingDay = await this.prisma.treino.findMany({
       where: {
