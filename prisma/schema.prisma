@@ -13,6 +13,7 @@ model Usuario {
   cpf     String   @unique @db.VarChar(50)
   email   String   @db.VarChar(50)
   senha   String   @db.VarChar(100)
+  Treino  Treino[]
   tarefas Tarefa[]
 
   @@map("usuarios")
@@ -25,7 +26,49 @@ model Tarefa {
   status    Boolean @default(false)
   usuario   Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
 
-  @@index([usuarioId], map: "tarefas_usuarioId_fkey")
   @@unique([id, usuarioId])
+  @@index([usuarioId], map: "tarefas_usuarioId_fkey")
   @@map("tarefas")
+}
+
+model SubTipoTreino {
+  id            Int         @id @default(autoincrement())
+  nome          String      @db.VarChar(50)
+  id_TipoTreino Int
+  Exercicio     Exercicio[]
+  TipoTreino    TipoTreino  @relation(fields: [id_TipoTreino], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_id_TipoTreino")
+
+  @@index([id_TipoTreino], map: "fk_id_TipoTreino")
+}
+
+model TipoTreino {
+  id            Int             @id @default(autoincrement())
+  nome          String          @db.VarChar(50)
+  SubTipoTreino SubTipoTreino[]
+  Treino        Treino[]
+}
+
+model Treino {
+  id            Int         @id @default(autoincrement())
+  id_usuario    Int
+  id_TipoTreino Int
+  diaSemana     Int
+  Exercicio     Exercicio[]
+  TipoTreino    TipoTreino  @relation(fields: [id_TipoTreino], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_id_TipoTreino_in_Treino")
+  usuarios      Usuario     @relation(fields: [id_usuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_id_usuario")
+
+  @@index([id_TipoTreino], map: "fk_id_TipoTreino_in_Treino")
+  @@index([id_usuario], map: "fk_id_usuario_in_treino")
+}
+
+model Exercicio {
+  id               Int           @id @default(autoincrement())
+  serie            Json
+  id_SubTipoTreino Int
+  id_Treino        Int
+  SubTipoTreino    SubTipoTreino @relation(fields: [id_SubTipoTreino], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_subTipoTreino_exercicio")
+  Treino           Treino        @relation(fields: [id_Treino], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_treino_exercicio")
+
+  @@index([id_SubTipoTreino], map: "idx_subTipoTreino")
+  @@index([id_Treino], map: "idx_treino")
 }

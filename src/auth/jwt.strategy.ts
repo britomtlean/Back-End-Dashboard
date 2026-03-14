@@ -42,6 +42,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
+    //VERIFICA SE O USUÁRIO EXISTE
     const usuario: UsuarioLogado | null = await this.prisma.usuario.findUnique({
       where: { id: payload.sub },
       select: {
@@ -57,7 +58,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException('Erro de Login');
     }
 
-    console.log('Usuario enviado:', usuario);
+    //RETORNA O USUÁRIO ASSINADO NO PAYLOAD
+    console.log('Usuario logado:', usuario, new Date());
     return usuario;
   }
 }
