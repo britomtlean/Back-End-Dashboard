@@ -10,7 +10,7 @@ import {
 import { AuthService } from './auth.service';
 
 //TYPE
-import type { Login, Casdastro } from 'src/types/Auth';
+import type { Login, Casdastro } from 'src/types/AuthBody';
 
 //MIDDLEWARE
 import { AuthGuard } from '@nestjs/passport';

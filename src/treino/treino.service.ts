@@ -12,14 +12,14 @@ import { LoggedUser } from 'src/types/LoggedUser';
 export class TreinoService {
   constructor(private readonly prisma: PrismaService) {}
 
-  /*************************** ENVIAR TIPO DE TREINOS ************************ */
+  /*************************** ENVIAR MUSCULO PARA TREINAR ************************ */
   async sendTypesTraining() {
     const typesTraining = await this.prisma.tipoTreino.findMany({});
 
     return typesTraining;
   }
 
-  /********************************* ENVIAR EXERCICIOS ************************************** */
+  /********************************* ENVIAR EXERCICIOS POR MUSCULO ************************************** */
 
 
   async sendTypesExercises() {
@@ -36,7 +36,7 @@ export class TreinoService {
 
     return typesTraining;
   }
-  /************************************* CREATE *********************************** */
+  /************************************* CRIAR TREINO*********************************** */
 
   async createTraining(
     training: TrainingBody,
@@ -84,7 +84,7 @@ export class TreinoService {
 
     const trainingDay = await this.prisma.treino.findMany({
       where: {
-        diaSemana: today,
+        //: today,
         id_usuario: user.id,
       },
       include: {

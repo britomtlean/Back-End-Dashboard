@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdateUser } from 'src/types/AuthBody';
 import { LoggedUser } from 'src/types/LoggedUser';
 
 @Injectable()
@@ -19,20 +20,20 @@ export class UsuariosService {
     return listUsers;
   }
 
-  async updateUser(userBody: any, userReq: LoggedUser){
-    console.log('Solicitação para atualização de dados:', userBody, new Date())
-    const { email, nome } = userBody
+  async updateUser(userBody: UpdateUser, userReq: LoggedUser) {
+    console.log('Solicitação para atualização de dados:', userBody, new Date());
+    const { email, nome } = userBody;
 
     const userUpdate = await this.prisma.usuario.update({
-      where:{
-        id: userReq.id
+      where: {
+        id: userReq.id,
       },
-      data:{
+      data: {
         nome,
-        email
-      }
-    })
+        email,
+      },
+    });
 
-    return userUpdate
+    return userUpdate;
   }
 }

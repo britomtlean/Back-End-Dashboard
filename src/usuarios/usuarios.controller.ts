@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { AuthGuard } from '@nestjs/passport';
+import type { UpdateUser } from 'src/types/AuthBody';
 
 @Controller('usuarios')
 export class UsuariosController {
@@ -13,7 +14,7 @@ export class UsuariosController {
 
   @Put('/update')
   @UseGuards(AuthGuard('jwt'))
-  updateUser(@Body() userBody: any, @Req() req: any){
+  updateUser(@Body() userBody: UpdateUser, @Req() req: any){
     return this.service.updateUser(userBody, req.user)
   }
 

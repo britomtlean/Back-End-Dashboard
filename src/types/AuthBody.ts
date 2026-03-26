@@ -9,3 +9,8 @@ export type Casdastro = {
   email: string;
   senha: string;
 };
+
+export type UpdateUser = {
+  nome: string,
+  email: string
+}

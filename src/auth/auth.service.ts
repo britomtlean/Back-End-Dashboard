@@ -11,7 +11,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 
 //TYPES
-import type { Login, Casdastro } from 'src/types/Auth';
+import type { Login, Casdastro } from 'src/types/AuthBody';
 import type { JwtPayload } from '../types/JwtPayload';
 
 //AUTENTICAÇÃO E CRYPTOGRAFIA
