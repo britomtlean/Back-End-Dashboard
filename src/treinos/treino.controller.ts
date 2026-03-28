@@ -1,40 +1,40 @@
 import { Controller, Get, Post, UseGuards, Body, Req } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import type { TrainingBody, ExerciseBody } from 'src/types/Training';
+import type { ReqExercise, ReqTraining } from 'src/types/Training';
 import { TreinoService } from './treino.service';
 
 @Controller('/training')
 export class TreinoController {
   constructor(private readonly service: TreinoService) {}
 
-  @Post('/create')
+  @Post('/post-training')
   @UseGuards(AuthGuard('jwt'))
-  createTraining(@Body() training: TrainingBody, @Req() req: any) {
+  createTraining(@Body() training: ReqTraining, @Req() req: any) {
     return this.service.createTraining(training, req.user);
   }
 
-  @Post('/add')
+  @Post('/post-exercise')
   @UseGuards(AuthGuard('jwt'))
-  addExercise(@Body() exercise: ExerciseBody) {
-    return this.service.addExercise(exercise);
+  addExercise(@Body() exercise: ReqExercise, @Req() req: any) {
+    return this.service.createExerciseInTraining(exercise, req.user);
   }
 
   /************************* GET ******************************** */
-  @Get('/getTypes')
+  @Get('/get-muscles')
   @UseGuards(AuthGuard('jwt'))
   sendTypesTraining(){
-    return this.service.sendTypesTraining()
+    return this.service.sendMuscleForTraining()
   }
 
-  @Get('/getExercises')
+  @Get('/get-exercises')
   @UseGuards(AuthGuard('jwt'))
   sendTypesExercises(){
-    return this.service.sendTypesExercises()
+    return this.service.sendExercisesForTraining()
   }
 
-  @Get('/getDay')
+  @Get('/get-alltrainings')
   @UseGuards(AuthGuard('jwt'))
   sendTrainingDay(@Req() req: any) {
-    return this.service.sendTrainingDay(req.user);
+    return this.service.sendAllTrainings(req.user);
   }
 }
