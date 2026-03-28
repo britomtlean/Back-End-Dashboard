@@ -1,4 +1,4 @@
-export type TrainingBody = {
+export type ReqTraining = {
   id?: number;
   diaSemana: number;
   musculo: number;
@@ -6,7 +6,7 @@ export type TrainingBody = {
   usuario?: number;
 };
 
-export type ExerciseBody = {
+export type ReqExercise = {
   idTreino: number;
   idSubTipoTreino: number;
   serie: Array<object>;

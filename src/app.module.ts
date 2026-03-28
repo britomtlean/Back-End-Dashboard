@@ -9,13 +9,31 @@ import { TarefasService } from './tarefas/tarefas.service';
 import { TarefasController } from './tarefas/tarefas.controller';
 import { TarefasModule } from './tarefas/tarefas.module';
 import { AuthModule } from './auth/auth.module';
-import { TreinoController } from './treino/treino.controller';
-import { TreinoService } from './treino/treino.service';
-import { TreinoModule } from './treino/treino.module';
+import { TreinoController } from './treinos/treino.controller';
+import { TreinoService } from './treinos/treino.service';
+import { TreinoModule } from './treinos/treino.module';
+import { UsuariosController } from './usuarios/usuarios.controller';
 
 @Module({
-  imports: [UsuariosModule, PrismaModule, TarefasModule, AuthModule, TreinoModule],
-  controllers: [AppController, TarefasController, TreinoController],
-  providers: [AppService, PrismaService, UsuariosService, TarefasService, TreinoService],
+  imports: [
+    PrismaModule,
+    AuthModule,
+    UsuariosModule,
+    TarefasModule,
+    TreinoModule,
+  ],
+  controllers: [
+    AppController,
+    UsuariosController, 
+    TarefasController,
+    TreinoController
+  ],
+  providers: [
+    AppService,
+    PrismaService,
+    UsuariosService,
+    TarefasService,
+    TreinoService,
+  ],
 })
 export class AppModule {}
